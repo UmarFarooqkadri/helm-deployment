@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: default
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1 # tells deployment to run 1 pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: test-sa
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+          - containerPort: 80
