@@ -14,7 +14,9 @@ image:
   tag: ""
 
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-imagePullSecrets: []
+imagePullSecrets:
+  - name: regcred
+
 # This is to override the chart name.
 nameOverride: ""
 fullnameOverride: ""
@@ -121,3 +123,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+
+env:
+  - name: "APP_ENV"
+    value: "production"
+  - name: "APP_DEBUG"
+    value: "false"
